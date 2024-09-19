@@ -1,0 +1,33 @@
+<!-- Booking Form -->
+<section id="booking-form" class="my-4">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-4">
+        <div class="row">
+          <div class="col-12 text-end">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2907/2907720.png"
+              alt="Driver Icon"
+              class="driver"
+            />
+          </div>
+        </div>
+        <div class="row" *ngFor="let seatNO of seatArray">
+          <div
+            class="col-3"
+            *ngIf="checkSeatsBookedOrNot(seatNO) !== -1; else notReserved"
+          >
+            <div class="seat reserved">{{ seatNO }}</div>
+          </div>
+          <ng-template #notReserved>
+            <!-- Here , for now it has not been booked, but if someone is selected that seats then we don't have to show available to different user available  -->
+            <div class="col-3" else>
+              <div class="seat available" (click)="selectSeats(seatNO)">{{ seatNO }}</div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-8"></div>
+    </div>
+  </div>
+</section>
